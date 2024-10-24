@@ -3,8 +3,17 @@ using System.Reflection;
 
 namespace PracticalTasks.Task2App
 {
+  /// <summary>
+  /// Основной класс приложения.
+  /// </summary>
   internal class Program
   {
+    #region Методы
+
+    /// <summary>
+    /// Стандартная точка входа в программу.
+    /// </summary>
+    /// <param name="args">Параметры командной строки.</param>
     static void Main(string[] args)
     {
       string assemblyName = "System.Windows.Forms";
@@ -104,5 +113,7 @@ namespace PracticalTasks.Task2App
 
       return false;
     }
+
+    #endregion
   }
 }

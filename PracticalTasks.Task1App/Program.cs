@@ -21,6 +21,6 @@ Console.WriteLine();
 using (var cameraPhone = new CameraPhone3G("1234", 4321))
 {
   cameraPhone.TakePhoto();
-}  
+}
 
 Console.ReadLine();

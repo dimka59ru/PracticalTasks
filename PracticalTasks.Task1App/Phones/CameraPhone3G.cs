@@ -24,7 +24,7 @@ namespace PracticalTasks.Task1App.Phones
     }
 
     /// <summary>
-    /// Телефон делает фото (просит камеру сделать фото).
+    /// Сделать фото.
     /// </summary>
     public void TakePhoto()
     {
@@ -40,7 +40,7 @@ namespace PracticalTasks.Task1App.Phones
       photoCamera.TakePhoto -= this.PhotoCameraTakePhotoHandler;
     }
 
-    #endregion            
+    #endregion
 
     #region Конструкторы
 

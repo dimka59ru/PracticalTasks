@@ -23,6 +23,6 @@ namespace PracticalTasks.Task1App.Cameras
       this.TakePhoto?.Invoke(this, args);
     }
 
-    #endregion   
+    #endregion
   }
 }

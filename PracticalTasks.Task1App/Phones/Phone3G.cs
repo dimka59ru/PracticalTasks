@@ -4,7 +4,7 @@
   /// Телефон с 3G
   /// </summary>
   internal class Phone3G : Phone
-  {  
+  {
     #region Базовый класс
 
     protected sealed override void ConnectToBaseStation()

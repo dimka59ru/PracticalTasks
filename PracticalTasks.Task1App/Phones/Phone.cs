@@ -29,7 +29,7 @@ namespace PracticalTasks.Task1App.Phones
     #region Методы
 
     /// <summary>
-    /// Заполняет справочник номеров абонентов базовыми контактами (Например, экстренными службами).
+    /// Заполнить справочник номеров базовыми контактами (Например, экстренными службами).
     /// </summary>
     private void PopulatePhoneBook()
     {
@@ -39,7 +39,7 @@ namespace PracticalTasks.Task1App.Phones
     }
 
     /// <summary>
-    /// Осуществляет соедиение с базовой станцией.
+    /// Соединиться с базовой станцией.
     /// </summary>
     protected virtual void ConnectToBaseStation()
     {
@@ -47,7 +47,7 @@ namespace PracticalTasks.Task1App.Phones
     }
 
     /// <summary>
-    /// Выполнят звонок по номеру телефона.
+    /// Выполнить звонок.
     /// </summary>
     /// <param name="number">Номер телефона.</param>
     public void Call(string number)
@@ -56,7 +56,7 @@ namespace PracticalTasks.Task1App.Phones
     }
 
     /// <summary>
-    /// Выполняет звонок, выбирая запись из телефонной книги по индексу.
+    /// Выполнить звонок.
     /// </summary>
     /// <param name="phoneBookIndex">Индекс в телефонной книге. Начинается с 1.</param>  
     /// <exception cref="ArgumentException">Если передать индекс 0, то будет выброшено исключение.</exception>
@@ -80,7 +80,7 @@ namespace PracticalTasks.Task1App.Phones
     }
 
     /// <summary>
-    /// Добавляет абонента в справочник
+    /// Добавить абонента в справочник.
     /// </summary>
     /// <param name="subscriber">Абонент</param>
     /// <exception cref="ArgumentNullException">Если передать null, то будет выброшено исключение.</exception>
@@ -99,7 +99,7 @@ namespace PracticalTasks.Task1App.Phones
     /// Конструктор.
     /// </summary>
     /// <param name="imei">imei телефона.</param>
-    /// <param name="simNumber">Номер симкарты.</param> 
+    /// <param name="simNumber">Номер симкарты.</param>
     /// <exception cref="ArgumentException">Если imei пустой, то будет выброшено исключение.</exception>
     public Phone(string imei, int simNumber)
     {
@@ -109,7 +109,7 @@ namespace PracticalTasks.Task1App.Phones
       }
 
       this.Imei = imei;
-      this.SimNumber = simNumber;      
+      this.SimNumber = simNumber;
 
       this.ConnectToBaseStation();
       this.PopulatePhoneBook();

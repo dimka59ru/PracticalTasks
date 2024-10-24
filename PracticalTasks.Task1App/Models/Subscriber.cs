@@ -40,11 +40,11 @@
     /// <param name="number">Телефонный номер абонента.</param>
     /// <exception cref="ArgumentException">Если имя или номер пустые, то будет выброшено исключение.</exception>
     public Subscriber(string surname, string name, string middleName, string number)
-    { 
+    {
       if (string.IsNullOrEmpty(name))
       {
         throw new ArgumentException($"'{nameof(name)}' cannot be null or empty.", nameof(name));
-      }      
+      }
 
       if (string.IsNullOrEmpty(number))
       {
@@ -59,8 +59,8 @@
 
     /// <summary>
     /// Конструктор.
-    /// </summary>   
-    /// <param name="name">Фамилия абонента.</param>    
+    /// </summary>
+    /// <param name="name">Фамилия абонента.</param>
     /// <param name="number">Телефонный номер абонента.</param>
     /// <exception cref="ArgumentException"></exception>
     public Subscriber(string name, string number) : this(string.Empty, name, string.Empty, number) { }

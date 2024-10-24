@@ -27,7 +27,7 @@ namespace PracticalTasks.Task2App
     public static MethodInfo GetPublicStaticOneParametricMethod(string assemblyName, string typeName, string methodName)
     {
       IEnumerable<MethodInfo> methodsInfos = GetMethodsInfos(assemblyName, typeName, BindingFlags.Public | BindingFlags.Static);
-      return methodsInfos.First(methodInfo => methodInfo.Name == methodName && methodInfo.GetParameters().Count() == 1);
+      return methodsInfos.First(methodInfo => methodInfo.Name == methodName && methodInfo.GetParameters().Length == 1);
     }
 
     public static IEnumerable<MethodInfo> GetMethodsInfos(string assemblyName, string typeName, BindingFlags bindingFlags)

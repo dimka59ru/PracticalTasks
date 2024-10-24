@@ -24,12 +24,30 @@ namespace PracticalTasks.Task2App
       return methodsNames;
     }
 
+    /// <summary>
+    /// Получить публичный статический метод с одним параметром.
+    /// </summary>
+    /// <param name="assemblyName">Имя сборки.</param>
+    /// <param name="typeName">Имя типа.</param>
+    /// <param name="methodName">Имя метода.</param>
+    /// <returns>MethodInfo.</returns>
+    /// <exception cref="ArgumentException">Если переданы пустые именя сборки и/или типа, то будет выбошно исключение.</exception>
+    /// <exception cref="Exception">Если тип не будет найден в сборке, то будет выброшено исключение.</exception>
     public static MethodInfo GetPublicStaticOneParametricMethod(string assemblyName, string typeName, string methodName)
     {
       IEnumerable<MethodInfo> methodsInfos = GetMethodsInfos(assemblyName, typeName, BindingFlags.Public | BindingFlags.Static);
       return methodsInfos.First(methodInfo => methodInfo.Name == methodName && methodInfo.GetParameters().Length == 1);
     }
 
+    /// <summary>
+    /// Получить публичный статический метод с одним параметром.
+    /// </summary>
+    /// <param name="assemblyName">Имя сборки.</param>
+    /// <param name="typeName">Имя типа.</param>
+    /// <param name="bindingFlags">Флаги поиска.</param>
+    /// <returns>Перечисление MethodInfo.</returns>
+    /// <exception cref="ArgumentException">Если переданы пустые именя сборки и/или типа, то будет выбошно исключение.</exception>
+    /// <exception cref="Exception">Если тип не будет найден в сборке, то будет выброшено исключение.</exception>
     public static IEnumerable<MethodInfo> GetMethodsInfos(string assemblyName, string typeName, BindingFlags bindingFlags)
     {
       if (string.IsNullOrEmpty(assemblyName))
@@ -43,7 +61,8 @@ namespace PracticalTasks.Task2App
       }
 
       Assembly asm = Assembly.Load(assemblyName);
-      Type? type = asm.GetType(typeName, false, true) ?? throw new Exception($"Type {typeName} not found in assembly {assemblyName}");
+      Type? type = asm.GetType(typeName, false, true) 
+        ?? throw new TypeLoadException($"Type {typeName} not found in assembly {assemblyName}");
 
       return type.GetMethods(bindingFlags);
     }

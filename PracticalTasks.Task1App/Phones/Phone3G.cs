@@ -7,7 +7,7 @@
   {  
     #region Базовый класс
 
-    protected override void ConnectToBaseStation()
+    protected sealed override void ConnectToBaseStation()
     {
       Console.WriteLine($"Соединились с базовой станцией по 3G.");
     }

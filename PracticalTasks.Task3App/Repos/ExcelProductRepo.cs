@@ -1,4 +1,5 @@
-﻿using PracticalTasks.Task3App.Models;
+﻿using ClosedXML.Excel;
+using PracticalTasks.Task3App.Models;
 using PracticalTasks.Task3App.Repos.Interfaces;
 
 namespace PracticalTasks.Task3App.Repos
@@ -8,16 +9,39 @@ namespace PracticalTasks.Task3App.Repos
   /// </summary>
   internal class ExcelProductRepo : IProductRepo
   {
+    #region Поля и свойства
+
+    private readonly XLWorkbook workbook;
+
+    #endregion
+
     #region IProductRepo
 
+    /// <summary>
+    /// Получить все записи.
+    /// Ограничение: данные будут получены только с первого листа.
+    /// </summary>
+    /// <returns>Список продуктов.</returns>
     public IEnumerable<Product> GetAll()
     {
-      return new List<Product>()
+      var worksheet = this.workbook.Worksheets.First();
+      var rows = worksheet.RowsUsed();
+
+      foreach (var row in rows)
       {
-        new("Ручка", 20),
-        new("Принтер", 10000),
-        new("Монитор", 12000)
-      };
+        var productName = row.Cell(1).GetValue<string>();
+        var productPrice = row.Cell(2).GetValue<decimal>();
+        yield return new Product(productName, productPrice);
+      }
+    }
+
+    #endregion
+
+    #region IDisposable
+
+    public void Dispose()
+    {
+      this.workbook.Dispose();
     }
 
     #endregion
@@ -27,7 +51,7 @@ namespace PracticalTasks.Task3App.Repos
     /// <summary>
     /// Конструктор.
     /// </summary>
-    /// <param name="dataFilePath">Путь до файлов с данными.</param>
+    /// <param name="dataFilePath">Путь до файла с данными.</param>
     /// <exception cref="ArgumentException">Если передан пустой путь, то будет выброшено исключение.</exception>
     public ExcelProductRepo(string dataFilePath)
     {
@@ -35,6 +59,8 @@ namespace PracticalTasks.Task3App.Repos
       {
         throw new ArgumentException($"'{nameof(dataFilePath)}' cannot be null or empty.", nameof(dataFilePath));
       }
+
+      this.workbook = new XLWorkbook(dataFilePath);
     }
 
     #endregion

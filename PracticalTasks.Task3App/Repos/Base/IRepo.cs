@@ -4,12 +4,12 @@
   /// Хранилище данных.
   /// </summary>
   /// <typeparam name="T">Тип сущности.</typeparam>
-  internal interface IRepo<T> where T : class
+  internal interface IRepo<T> : IDisposable where T : class
   {
     /// <summary>
     /// Получить все записи.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>Список данных.</returns>
     IEnumerable<T> GetAll();
   }
 }

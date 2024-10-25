@@ -20,6 +20,11 @@ namespace PracticalTasks.Task3App
     /// </summary>
     private const string dataRecipientFileName = "SortedProductsMoreExpensiveMinPrice.txt";
 
+    /// <summary>
+    /// Путь до файла источника данных.
+    /// </summary>
+    private const string dataSourceFilePath = "./ProductsDb.xlsx";
+
     #endregion
 
     #region Поля и свойства
@@ -43,8 +48,10 @@ namespace PracticalTasks.Task3App
 
       try
       {
-        var excelProductRepo = new ExcelProductRepo("C:/");
-        products = excelProductRepo.GetAll().ToList();
+        using (var excelProductRepo = new ExcelProductRepo(dataSourceFilePath))
+        {
+          products = excelProductRepo.GetAll().ToList();
+        }
 
         var sortedProductsMoreExpensiveMinPrice = products
           .Where(product => product.Price > minProductPrice)
@@ -57,10 +64,6 @@ namespace PracticalTasks.Task3App
 
         File.WriteAllText(dataRecipientFilePath, string.Empty);
         File.AppendAllLines(dataRecipientFilePath, productsAsStrings);
-      }
-      catch (IOException ex)
-      {
-        Console.WriteLine($"Не удалось сохранить данные в файл. Причина: {ex.Message}.");
       }
       catch (Exception ex)
       {

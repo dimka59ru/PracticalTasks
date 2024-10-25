@@ -32,7 +32,7 @@ namespace PracticalTasks.Task2App
         Console.WriteLine($"Не удалось получить тип {typeName} из сборки {assemblyName}.");
         return;
       }
-      
+
       IEnumerable<string> nonStaticMethodsNames = GetPublicNonStaticMethods(type);
 
       try

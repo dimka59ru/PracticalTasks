@@ -6,6 +6,7 @@
   internal class Product
   {
     #region Поля и свойства
+
     /// <summary>
     /// Наименование.
     /// </summary>

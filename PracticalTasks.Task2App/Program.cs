@@ -56,9 +56,9 @@ namespace PracticalTasks.Task2App
 
       Console.ReadKey();
     }
-   
+
     /// <summary>
-    /// Получает публичные нестатические методы.
+    /// Получить публичные нестатические методы.
     /// </summary>
     /// <param name="type">Тип, в котором осуществляется поиск.</param>
     /// <returns>Коллекция имен методов.</returns>
@@ -70,7 +70,7 @@ namespace PracticalTasks.Task2App
     }
 
     /// <summary>
-    /// Пытаемся загрузить сборку.
+    /// Попытаться загрузить сборку.
     /// </summary>
     /// <param name="assemblyName">Имя сборки.</param>
     /// <param name="assembly">Cборка.</param>
@@ -92,8 +92,8 @@ namespace PracticalTasks.Task2App
     }
 
     /// <summary>
-    /// Пытаемся получить тип.
-    /// </summary>    
+    /// Попытаться получить тип.
+    /// </summary>
     /// <param name="assembly">Cборка.</param>
     /// <param name="typeName">Имя Типа.</param>
     /// <returns>Удалось ли получить тип.</returns>

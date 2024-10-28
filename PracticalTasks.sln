@@ -20,6 +20,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Task3", "Task3", "{72911EB3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PracticalTasks.Task3App", "PracticalTasks.Task3App\PracticalTasks.Task3App.csproj", "{BFFC33EC-DE3D-4CDD-B73D-D7F4922F6D26}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Task4", "Task4", "{FB38A17E-70A0-4DF5-B36C-01A2E9B8E16A}"
+	ProjectSection(SolutionItems) = preProject
+		Patterns.txt = Patterns.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PracticalTasks.Task4App", "PracticalTasks.Task4App\PracticalTasks.Task4App.csproj", "{1EB7915E-8B62-42FD-9E63-2956C1EA1BC4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +45,10 @@ Global
 		{BFFC33EC-DE3D-4CDD-B73D-D7F4922F6D26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFFC33EC-DE3D-4CDD-B73D-D7F4922F6D26}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFFC33EC-DE3D-4CDD-B73D-D7F4922F6D26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EB7915E-8B62-42FD-9E63-2956C1EA1BC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EB7915E-8B62-42FD-9E63-2956C1EA1BC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EB7915E-8B62-42FD-9E63-2956C1EA1BC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EB7915E-8B62-42FD-9E63-2956C1EA1BC4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +57,7 @@ Global
 		{0C7400CF-425D-4052-B936-0D2AABC601F3} = {784E59CD-63B0-4CCD-9F4D-397CF08523AE}
 		{EBD0DD23-F55B-4EF9-B0AC-5F6886819022} = {253D9FFE-3003-45B6-8408-9214BFA2D67B}
 		{BFFC33EC-DE3D-4CDD-B73D-D7F4922F6D26} = {72911EB3-35B6-4007-AA1E-B75A72837399}
+		{1EB7915E-8B62-42FD-9E63-2956C1EA1BC4} = {FB38A17E-70A0-4DF5-B36C-01A2E9B8E16A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A9FADCBF-43DC-4E6C-9313-A1CD51F0D08F}

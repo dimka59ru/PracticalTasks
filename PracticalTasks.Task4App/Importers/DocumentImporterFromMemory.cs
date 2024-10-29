@@ -1,20 +1,17 @@
 ﻿using PracticalTasks.Task4App.Documents;
 
-namespace PracticalTasks.Task4App.Repositories
+namespace PracticalTasks.Task4App.Importers
 {
-  /// <summary>
-  /// Хранилище документов.
-  /// </summary>
-  internal class DocumentRepository : IDocumentRepository
+  internal class DocumentImporterFromMemory : IDocumentImporter
   {
     private readonly List<IDocument> documents;
 
-    public IDocument? Get(int id)
+    public IDocument? Load(int id)
     {
       return this.documents.FirstOrDefault(document => document.Id == id);
     }
 
-    public DocumentRepository()
+    public DocumentImporterFromMemory()
     {
       IDocument doc1 = new Document("Документ 1", 1);
       IDocument doc2 = new Document("Документ 2", 2);

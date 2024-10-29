@@ -1,30 +1,26 @@
 ﻿using PracticalTasks.Task4App.Documents;
 
-namespace PracticalTasks.Task4App.DocumentExporters
+namespace PracticalTasks.Task4App.Exporters
 {
   /// <summary>
   /// Базовый декоратор для экспортера документов.
   /// </summary>
-  internal abstract class DocumentExporterDecorator : IDocumentExporter
+  internal abstract class DocumentToFolderExporterDecorator : DocumentToFolderExporterBase
   {
     #region Поля и свойства
 
     /// <summary>
     /// Декорируемый экспортер документов.
     /// </summary>
-    protected IDocumentExporter DocumentExporter { get; }
+    protected DocumentToFolderExporterBase DocumentExporter { get; }
 
     #endregion
 
-    #region IDocumentExporter
+    #region Базовый класс
 
-    public virtual IDocument Document => this.DocumentExporter.Document;
-
-    public virtual string PathToExport => this.DocumentExporter.PathToExport;
-
-    public virtual void Export()
+    public override void Export(IDocument document)
     {
-      this.DocumentExporter.Export();
+      this.DocumentExporter.Export(document);
     }
 
     #endregion
@@ -35,7 +31,7 @@ namespace PracticalTasks.Task4App.DocumentExporters
     /// Конструктор.
     /// </summary>
     /// <param name="documentExporter">Декторируемый экспортер.</param>
-    public DocumentExporterDecorator(IDocumentExporter documentExporter)
+    public DocumentToFolderExporterDecorator(DocumentToFolderExporterBase documentExporter) : base(documentExporter.PathToFolder)
     {
       this.DocumentExporter = documentExporter;
     }

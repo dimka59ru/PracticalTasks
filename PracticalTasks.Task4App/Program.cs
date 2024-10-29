@@ -1,4 +1,6 @@
-﻿using PracticalTasks.Task4App.Documents;
+﻿using PracticalTasks.Task4App.DocumentExporters;
+using PracticalTasks.Task4App.Documents;
+using PracticalTasks.Task4App.Repositories;
 
 namespace PracticalTasks.Task4App
 {
@@ -6,21 +8,54 @@ namespace PracticalTasks.Task4App
   {
     static void Main(string[] args)
     {
+      IDocumentRepository documentRepository = new DocumentRepository();
 
-      IDocument doc1 = new Document("Документ 1", 1);
-      IDocument doc2 = new Document("Документ 2", 2);
-      IDocument doc3 = new Document("Документ 3", 3);
+      // #1
+      int documentId = 5;
+      IDocument? document = documentRepository.Get(documentId);
+      if (document == null)
+      {
+        Console.WriteLine($"Документ с id {documentId} не найден.");
+        return;
+      }
 
-      ICompoundDocument comp1 = new CompoundDocument("Комплект 1", 4);
-      comp1.AddDocument(doc1);
-      comp1.AddDocument(doc2);
+      IDocumentExporter exporter = new DocumentExporter(document, "C:\\TEMP\\");
+      exporter = new DocumentExporterEncryptionDecorator(exporter);
+      exporter = new DocumentExporterCompressionDecorator(exporter);
+      exporter.Export();
 
-      ICompoundDocument root = new CompoundDocument("Комплект 2", 5);
-      root.AddDocument(comp1);
-      root.AddDocument(doc3);
+      Console.WriteLine();
+      Console.WriteLine("---------------");
 
-      Console.WriteLine(root.GetDescription(0));
 
+      // #2
+      documentId = 4;
+      document = documentRepository.Get(documentId);
+      if (document == null)
+      {
+        Console.WriteLine($"Документ с id {documentId} не найден.");
+        return;
+      }
+
+      exporter = new DocumentExporter(document, "C:\\TEMP2\\");
+      exporter = new DocumentExporterCompressionDecorator(exporter);
+      exporter.Export();
+
+      Console.WriteLine();
+      Console.WriteLine("---------------");
+
+      // #3
+      documentId = 3;
+      document = documentRepository.Get(documentId);
+      if (document == null)
+      {
+        Console.WriteLine($"Документ с id {documentId} не найден.");
+        return;
+      }
+
+      exporter = new DocumentExporter(document, "C:\\TEMP3\\");
+      exporter = new DocumentExporterEncryptionDecorator(exporter);
+      exporter.Export();
     }
   }
 }

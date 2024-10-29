@@ -18,8 +18,7 @@
     /// <summary>
     /// Получить описание документа.
     /// </summary>
-    /// <param name="depth">Глубина вложенности.</param>
-    /// <returns>Форматированный в виде дерева текст (с помощью отступов на заданную губину).</returns>
-    string GetDescription(int depth);
+    /// <returns>Форматированный в виде дерева текст.</returns>
+    string GetDescription();
   }
 }

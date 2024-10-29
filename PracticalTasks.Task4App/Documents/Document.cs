@@ -1,6 +1,4 @@
-﻿using System.Text;
-
-namespace PracticalTasks.Task4App.Documents
+﻿namespace PracticalTasks.Task4App.Documents
 {
   /// <summary>
   /// Простой документ.
@@ -9,13 +7,9 @@ namespace PracticalTasks.Task4App.Documents
   {
     #region IDocument
 
-    public override string GetDescription(int depth)
+    public override string GetDescription()
     {
-      StringBuilder discription = new();
-      discription.Append(' ', depth);
-      discription.Append(this.Name);
-      discription.Append(Environment.NewLine);
-      return discription.ToString();
+      return this.Name;
     }
 
     #endregion

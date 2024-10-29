@@ -8,7 +8,7 @@
 
     public string Name { get; set; }
 
-    public abstract string GetDescription(int depth);
+    public abstract string GetDescription();
 
     #endregion
 

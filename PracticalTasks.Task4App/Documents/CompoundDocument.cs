@@ -7,34 +7,46 @@ namespace PracticalTasks.Task4App.Documents
   /// </summary>
   internal class CompoundDocument : DocumentBase, ICompoundDocument
   {
-    #region Поля и свойства
+    #region Методы
 
     /// <summary>
-    /// Документы, которые входят в состав текущего.
+    /// Получить рекурсивно описание документа.
     /// </summary>
-    private readonly List<IDocument> documents = new();
+    /// <param name="document">Документ, описание которого нудно получить.</param>
+    /// <param name="depth">Уровень вложенности документа, задает ширину отступа при форматирвоании вывода.</param>
+    /// <returns>Форматированный вывод (с отступами) описания документа.</returns>
+    private static string GetDescriptionInternal(IDocument document, int depth)
+    {
+      StringBuilder discription = new();
+      discription.Append(' ', depth);
+      discription.Append(document.Name);
+      discription.Append(Environment.NewLine);
+
+      if (document is ICompoundDocument compoundDocument)
+      {
+        foreach (var doc in compoundDocument.Children)
+        {
+          discription.Append(GetDescriptionInternal(doc, depth + 2));
+        }
+      }
+      return discription.ToString();
+    }
 
     #endregion
 
     #region ICompoundDocument
 
-    public override string GetDescription(int depth)
-    {
-      StringBuilder discription = new();
-      discription.Append(' ', depth);
-      discription.Append(this.Name);
-      discription.Append(Environment.NewLine);
+    private readonly List<IDocument> children;
+    public IEnumerable<IDocument> Children => this.children;
 
-      foreach (var document in this.documents)
-      {
-        discription.Append(document.GetDescription(depth + 2));
-      }
-      return discription.ToString();
+    public override string GetDescription()
+    {
+      return GetDescriptionInternal(this, 1);
     }
 
     public void AddDocument(IDocument document)
     {
-      this.documents.Add(document);
+      this.children.Add(document);
     }
 
     #endregion
@@ -46,7 +58,10 @@ namespace PracticalTasks.Task4App.Documents
     /// </summary>
     /// <param name="name">Название документа.</param>
     /// <exception cref="ArgumentException">Если будет передано пустое название документа, то будт выброшено исключение.</exception>
-    public CompoundDocument(string name, int id) : base(name, id) { }
+    public CompoundDocument(string name, int id) : base(name, id)
+    {
+      this.children = new List<IDocument>();
+    }
 
     #endregion
   }

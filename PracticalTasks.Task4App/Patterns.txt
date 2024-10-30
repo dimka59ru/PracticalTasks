@@ -2,6 +2,12 @@
 интерфейс IDocument  с методом GetDescription для печати описания документа.
 
 Декоратор применен для добавления функционала шифрования и сжатия документов.
-В дектораторы обернуты классы, которые реализуют IDocumentExporter.
+В дектораторы обернуты классы, которые реализуют DocumentToFolderExporterBase.
 
-Стратегия (распишу).
+Стратегия используется для DocumentTransferProcessor, в него мы передаем
+IDocumentImporter и IDocumentExporter, реализацию котороых можем выбирвать снаружи.
+
+Шаблонный метод используется в DocumentTransferProcessorBase в методе Process.
+В методе Process вызываются абстрактные методы  GetDocument и SendDocument.
+Наследникам DocumentTransferProcessorBase остается только реализовать методы GetDocument и SendDocument,
+вся логика реализована в методе Process

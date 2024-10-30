@@ -13,3 +13,6 @@ IDocumentImporter и IDocumentExporter, реализацию которых можем выбирвать снаруж
 В методе Process вызываются абстрактные методы  GetDocument и SendDocument.
 Наследникам DocumentTransferProcessorBase остается только реализовать методы GetDocument и SendDocument,
 вся логика реализована в методе Process
+
+Паттерн "Фабрика" в AppCommandFactory. Что-то типа фабричного метода, так делают, но до настоящих фабрик не дотягивает.
+В случае добавления новых комманд, придется дописывать switch

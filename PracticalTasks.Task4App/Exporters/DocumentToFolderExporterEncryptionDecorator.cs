@@ -1,4 +1,5 @@
 ﻿using PracticalTasks.Task4App.Documents;
+using PracticalTasks.Task4App.Encryptors;
 
 namespace PracticalTasks.Task4App.Exporters
 {
@@ -8,15 +9,12 @@ namespace PracticalTasks.Task4App.Exporters
   /// </summary>
   internal class DocumentToFolderExporterEncryptionDecorator : DocumentToFolderExporterDecorator
   {
-    #region Методы
+    #region Поля и свойства
 
     /// <summary>
-    /// Шифрует документ.
+    /// Шифровальщик файлов.
     /// </summary>
-    private void Encrypt()
-    {
-      Console.WriteLine($"Документы в папке {this.DocumentExporter.PathToFolder} зашифрованы.");
-    }
+    private readonly IFilesEncryptor filesEncryptor;
 
     #endregion
 
@@ -25,7 +23,7 @@ namespace PracticalTasks.Task4App.Exporters
     public override void Export(IDocument document)
     {
       this.DocumentExporter.Export(document);
-      this.Encrypt();
+      this.filesEncryptor.Encrypt(this.DocumentExporter.PathToFolder);
     }
 
     #endregion
@@ -36,8 +34,12 @@ namespace PracticalTasks.Task4App.Exporters
     /// Конструктор.
     /// </summary>
     /// <param name="documentExporter">Декорируемый экспортер документов.</param>
-    public DocumentToFolderExporterEncryptionDecorator(DocumentToFolderExporterBase documentExporter) : base(documentExporter)
+    /// <param name="filesEncryptor">Шифровальщик файлов.</param>
+    /// <exception cref="ArgumentNullException">Если шифровальщик файлов null, то будет выброшено исключение.</exception>
+    public DocumentToFolderExporterEncryptionDecorator(DocumentToFolderExporterBase documentExporter, IFilesEncryptor filesEncryptor)
+      : base(documentExporter)
     {
+      this.filesEncryptor = filesEncryptor ?? throw new ArgumentNullException(nameof(filesEncryptor));
     }
 
     #endregion

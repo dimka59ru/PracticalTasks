@@ -5,7 +5,9 @@
 В дектораторы обернуты классы, которые реализуют DocumentToFolderExporterBase.
 
 Стратегия используется для DocumentTransferProcessor, в него мы передаем
-IDocumentImporter и IDocumentExporter, реализацию котороых можем выбирвать снаружи.
+IDocumentImporter и IDocumentExporter, реализацию которых можем выбирвать снаружи.
+Использование IFilesCompressor и IFilesEncryptor тоже можно назвать стратегией, например,
+если пользователь выберет конкретный алгоритм шифрования, то мы можем использовать его, если не выберет, то можем использовать дефолтный.
 
 Шаблонный метод используется в DocumentTransferProcessorBase в методе Process.
 В методе Process вызываются абстрактные методы  GetDocument и SendDocument.

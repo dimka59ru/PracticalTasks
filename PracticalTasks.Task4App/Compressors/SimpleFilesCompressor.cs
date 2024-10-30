@@ -7,6 +7,14 @@
   {
     #region IFilesCompressor
 
+    /// <summary>
+    /// Архивировать файлы в папке.
+    /// </summary>
+    /// <param name="filesPath">Путь до файлов.</param>
+    /// <param name="archiveName">Имя арзива, который будет создан.</param>
+    /// <exception cref="ArgumentException">
+    /// Если путь до файлов и/или имя архива не заданы, то будет выброшено исключение.
+    /// </exception>
     public void Compress(string filesPath, string archiveName)
     {
       if (string.IsNullOrEmpty(filesPath))

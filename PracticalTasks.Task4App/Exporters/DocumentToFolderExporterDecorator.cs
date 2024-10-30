@@ -31,9 +31,10 @@ namespace PracticalTasks.Task4App.Exporters
     /// Конструктор.
     /// </summary>
     /// <param name="documentExporter">Декторируемый экспортер.</param>
+    /// <exception cref="ArgumentNullException">Если documentExporter null, то будет выброшено исключение.</exception>
     public DocumentToFolderExporterDecorator(DocumentToFolderExporterBase documentExporter) : base(documentExporter.PathToFolder)
     {
-      this.DocumentExporter = documentExporter;
+      this.DocumentExporter = documentExporter ?? throw new ArgumentNullException(nameof(documentExporter));
     }
 
     #endregion

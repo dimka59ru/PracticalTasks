@@ -1,4 +1,5 @@
-﻿using PracticalTasks.Task4App.DocumentProcessors;
+﻿using PracticalTasks.Task4App.Compressors;
+using PracticalTasks.Task4App.DocumentProcessors;
 using PracticalTasks.Task4App.Exporters;
 using PracticalTasks.Task4App.Importers;
 
@@ -10,12 +11,13 @@ namespace PracticalTasks.Task4App
     {
 
       IDocumentImporter documentImporter = new DocumentImporterFromMemory();
+      IFilesCompressor filesCompressor = new SimpleFilesCompressor();
 
       // #1
       int documentId = 5;
       DocumentToFolderExporterBase documentExporter = new DocumentToFolderExporter("C:\\TEMP\\");
       documentExporter = new DocumentToFolderExporterEncryptionDecorator(documentExporter);
-      documentExporter = new DocumentToFolderExporterCompressionDecorator(documentExporter);
+      documentExporter = new DocumentToFolderExporterCompressionDecorator(documentExporter, filesCompressor);
 
       var documentProcessor = new DocumentTransferProcessor(documentImporter, documentExporter);
       documentProcessor.Process(documentId);
@@ -26,7 +28,7 @@ namespace PracticalTasks.Task4App
       // #2
       documentId = 4;
       documentExporter = new DocumentToFolderExporter("C:\\TEMP2\\");
-      documentExporter = new DocumentToFolderExporterCompressionDecorator(documentExporter);
+      documentExporter = new DocumentToFolderExporterCompressionDecorator(documentExporter, filesCompressor);
       documentProcessor = new DocumentTransferProcessor(documentImporter, documentExporter);
       documentProcessor.Process(documentId);
 

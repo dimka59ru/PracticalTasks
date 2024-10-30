@@ -1,4 +1,5 @@
-﻿using PracticalTasks.Task4App.Documents;
+﻿using PracticalTasks.Task4App.Compressors;
+using PracticalTasks.Task4App.Documents;
 
 namespace PracticalTasks.Task4App.Exporters
 {
@@ -8,15 +9,12 @@ namespace PracticalTasks.Task4App.Exporters
   /// </summary>
   internal class DocumentToFolderExporterCompressionDecorator : DocumentToFolderExporterDecorator
   {
-    #region Методы
+    #region Поля и свойства
 
     /// <summary>
-    /// Упаковать в архив.
+    /// Архиватор документов.
     /// </summary>
-    private void Compress(IDocument document)
-    {
-      Console.WriteLine($"Документы в папке {this.DocumentExporter.PathToFolder} упакованы в архив с именем \"{document.Name}\".");
-    }
+    private readonly IFilesCompressor filesCompressor;
 
     #endregion
 
@@ -25,7 +23,7 @@ namespace PracticalTasks.Task4App.Exporters
     public override void Export(IDocument document)
     {
       this.DocumentExporter.Export(document);
-      this.Compress(document);
+      this.filesCompressor.Compress(this.DocumentExporter.PathToFolder, document.Name);
     }
 
     #endregion
@@ -36,8 +34,10 @@ namespace PracticalTasks.Task4App.Exporters
     /// Конструкторы.
     /// </summary>
     /// <param name="documentExporter">Декторируемый экспортер документов.</param>
-    public DocumentToFolderExporterCompressionDecorator(DocumentToFolderExporterBase documentExporter) : base(documentExporter)
+    public DocumentToFolderExporterCompressionDecorator(DocumentToFolderExporterBase documentExporter, IFilesCompressor filesCompressor)
+      : base(documentExporter)
     {
+      this.filesCompressor = filesCompressor ?? throw new ArgumentNullException(nameof(filesCompressor));
     }
 
     #endregion
